@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "fb6b216c-8a47-4d0b-b479-305f75d00359",
+		"name": "proyectoComandas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Familias",
+			"item": [
+				{
+					"name": "Buscartodas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearFamilias",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"Bebidas\"}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarFamilias",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 1,\n        \"nombre\": \"Tapas\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarFamilia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
