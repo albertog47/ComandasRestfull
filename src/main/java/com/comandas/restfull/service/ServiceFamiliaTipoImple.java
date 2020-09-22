@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comandas.restfull.entity.FamiliaTipo;
+import com.comandas.restfull.exception.ModelNontFoundException;
 import com.comandas.restfull.repository.RepositoryFamiliaTipo;
 
 @Service
@@ -24,7 +25,11 @@ public class ServiceFamiliaTipoImple implements ServiceFamiliaTipo {
 	@Override
 	public Optional<FamiliaTipo> findFamiliaTipoById(Integer id) {
 		Optional<FamiliaTipo> familiaTipo = repoFamiliaTipo.findById(id);	
+		if (familiaTipo.isEmpty()){
+			throw new ModelNontFoundException( "Error! La familia no ha sido encontrada");
+		}else {
 		return familiaTipo;
+		}
 	}
 
 	@Override
@@ -34,11 +39,12 @@ public class ServiceFamiliaTipoImple implements ServiceFamiliaTipo {
 	}
 
 	@Override
-	public String deleteFamiliaTipo(Integer id) {
+	public void deleteFamiliaTipo(Integer id) {
 		if (repoFamiliaTipo.findById(id).isPresent()) {		
 			repoFamiliaTipo.deleteById(id);				
-			return "Familia eliminada correctamente.";			}	
-		return "Error! La familia no existe";
+			}	else {
+		throw new ModelNontFoundException( "Error! La familia no existe");
+			}
 	}
 
 	@Override

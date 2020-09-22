@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.comandas.restfull.entity.FamiliaTipo;
@@ -17,27 +19,33 @@ public class FamiliaTipoController {
 
 	// http://localhost:9120/familias (GET)
 	@RequestMapping(value = "/familias", method = RequestMethod.GET, produces = "application/json")
-	public List<FamiliaTipo> getFamilias() {
+	public ResponseEntity <List<FamiliaTipo>> getFamilias() {
 
-		return serviceFamiliaTipo.findAllFamiliaTipos();
+		return new ResponseEntity <>(serviceFamiliaTipo.findAllFamiliaTipos(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/familias/{id}", method = RequestMethod.GET, produces = "application/json")	
-	public Optional<FamiliaTipo> getFamiliaTipoById(@PathVariable Integer id) {		
-		return serviceFamiliaTipo.findFamiliaTipoById(id);
-		}
+	@RequestMapping(value = "/familias/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Optional<FamiliaTipo>> getFamiliaTipoById(@PathVariable Integer id) {
+		
+		return new  ResponseEntity<>(serviceFamiliaTipo.findFamiliaTipoById(id), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/familias/add", method = RequestMethod.POST, produces = "application/json")
-	public FamiliaTipo addFamilia(@RequestBody FamiliaTipo familiaTipo) {
-		return serviceFamiliaTipo.saveFamiliaTipo(familiaTipo);
+	public ResponseEntity<FamiliaTipo> addFamilia(@RequestBody FamiliaTipo familiaTipo) {
+		
+		return new ResponseEntity <>(serviceFamiliaTipo.saveFamiliaTipo(familiaTipo), HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/familias/update", method = RequestMethod.PUT, produces = "application/json")
-	public FamiliaTipo updateFamilia(@RequestBody FamiliaTipo familiaTipo) {
-		return serviceFamiliaTipo.saveFamiliaTipo(familiaTipo);
+	public ResponseEntity<Object>  updateFamilia(@RequestBody FamiliaTipo familiaTipo) {
+		serviceFamiliaTipo.saveFamiliaTipo(familiaTipo);
+		return new ResponseEntity <>( HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/familias/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
-	public String deleteFamilia(@PathVariable("id") Integer id) {
-		return serviceFamiliaTipo.deleteFamiliaTipo(id);
+	public  ResponseEntity<Object>  deleteFamilia(@PathVariable("id") Integer id) {
+		
+		serviceFamiliaTipo.deleteFamiliaTipo(id);
+		 return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
