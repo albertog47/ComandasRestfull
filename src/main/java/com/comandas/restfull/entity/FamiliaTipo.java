@@ -54,7 +54,6 @@ public class FamiliaTipo implements Serializable{
 		this.nombre = nombre;
 	}
 	
-	
 	@OneToMany( cascade = CascadeType.ALL)
 	@JoinColumn(name="id_familia")
 	private List<FamiliaProducto> familiaProductos;
