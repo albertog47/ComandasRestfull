@@ -1,6 +1,7 @@
 package com.comandas.restfull.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -32,6 +33,11 @@ public class FamiliaProducto implements Serializable {
 	
 	@Column
 	private Integer id_familia;
+	
+	@OneToMany( cascade = CascadeType.ALL)
+	@JoinColumn(name="id_familia_producto")
+	private List<Producto> productos;
+	
 	
 	public FamiliaProducto() {
 	}
@@ -75,6 +81,20 @@ public class FamiliaProducto implements Serializable {
 
 	public void setId_familia(Integer id_familia) {
 		this.id_familia = id_familia;
+	}
+
+
+
+
+	public List<Producto> getProductos() {
+		return productos;
+	}
+
+
+
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 	
