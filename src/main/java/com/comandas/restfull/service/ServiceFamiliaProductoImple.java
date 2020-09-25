@@ -51,7 +51,12 @@ public class ServiceFamiliaProductoImple implements ServiceFamiliaProducto {
 
 	@Override
 	public FamiliaProducto updateFamiliaProducto(FamiliaProducto familiaProducto) {
+		if (repositoryFamiliaProducto.findById(familiaProducto.getId()).isPresent()) {
 		return repositoryFamiliaProducto.save(familiaProducto);
+		} else {
+
+			throw new ModelNontFoundException("Error! La familia producto no existe");
+		}
 	}
 
 }

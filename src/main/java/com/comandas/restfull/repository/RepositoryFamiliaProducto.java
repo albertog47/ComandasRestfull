@@ -8,4 +8,5 @@ import com.comandas.restfull.entity.FamiliaProducto;
 @Repository
 public interface RepositoryFamiliaProducto extends JpaRepository<FamiliaProducto ,Integer> {
 
+
 }

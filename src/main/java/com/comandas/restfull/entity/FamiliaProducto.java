@@ -6,17 +6,11 @@ import java.util.List;
 import javax.persistence.*;
 
 
+@Entity (name="familias_productos")
 
-
-@Entity
-@Table(name="familias_productos")
 public class FamiliaProducto implements Serializable {
 	
-	
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3045648238479324502L;
 
 	@Id
@@ -26,30 +20,23 @@ public class FamiliaProducto implements Serializable {
 	@Column 
 	private String nombre;
 	
-	/*@ManyToOne
-	@JoinColumn(name="id_familia")
-	private FamiliaTipo familiaTipo;
-*/
+
 	
-	@Column
-	private Integer id_familia;
+	@ManyToOne(optional = false)
+    @JoinColumn(name = "id_tipo", nullable = false)
+    private Tipo tipo;
 	
-	@OneToMany( cascade = CascadeType.ALL)
-	@JoinColumn(name="id_familia_producto")
-	private List<Producto> productos;
 	
 	
 	public FamiliaProducto() {
 	}
 
 
-	
 
-	public FamiliaProducto(String nombre, Integer id_familia) {
+	public FamiliaProducto(String nombre, Tipo familiaTipo) {
 		this.nombre = nombre;
-		this.id_familia = id_familia;
+		this.tipo = familiaTipo;
 	}
-
 
 
 
@@ -71,20 +58,18 @@ public class FamiliaProducto implements Serializable {
 
 
 
-
-	public Integer getId_familia() {
-		return id_familia;
+	public Tipo getTipo() {
+		return tipo;
 	}
 
 
-
-
-	public void setId_familia(Integer id_familia) {
-		this.id_familia = id_familia;
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 
-
+	/*	@OneToMany(mappedBy = "familiaProducto")
+	private List<Producto> productos;
 
 	public List<Producto> getProductos() {
 		return productos;
@@ -97,7 +82,7 @@ public class FamiliaProducto implements Serializable {
 		this.productos = productos;
 	}
 
-	
+	*/
 
 	
 	

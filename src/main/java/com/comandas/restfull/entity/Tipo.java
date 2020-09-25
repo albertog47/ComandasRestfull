@@ -7,9 +7,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-@Table(name="familias_tipos")
-public class FamiliaTipo implements Serializable{
+@Entity(name="tipos")
+public class Tipo implements Serializable{
 	
 	/**
 	 * 
@@ -17,22 +16,20 @@ public class FamiliaTipo implements Serializable{
 	private static final long serialVersionUID = -8253933975142997341L;
 
 	@Id
+	@Column (name="id_tipo")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private Integer id;
 	
 	@Column 
 	private String nombre;
 	
-	
-	
 
-	public FamiliaTipo() {
+	public Tipo() {
 	
 	}
 
 	
-	public FamiliaTipo(String nombre) {
+	public Tipo(String nombre) {
 		
 		this.nombre = nombre;
 	}
@@ -54,20 +51,23 @@ public class FamiliaTipo implements Serializable{
 		this.nombre = nombre;
 	}
 	
-	@OneToMany( cascade = CascadeType.ALL)
-	@JoinColumn(name="id_familia")
-	private List<FamiliaProducto> familiaProductos;
+
+	@OneToMany(mappedBy = "tipo")
+	private List<FamiliaProducto> familiaProducto;
 
 
 
-
-	public List<FamiliaProducto> getFamiliaProductos() {
-		return familiaProductos;
+/*
+	public List<FamiliaProducto> getFamiliaProducto() {
+		return familiaProducto;
 	}
 
 
-	public void setFamiliaProductos(List<FamiliaProducto> familiaProductos) {
-		this.familiaProductos = familiaProductos;
+	public void setFamiliaProducto(List<FamiliaProducto> familiaProducto) {
+		this.familiaProducto = familiaProducto;
 	}
+
+*/
+
 
 }

@@ -21,18 +21,20 @@ public class Producto implements Serializable {
 	@Column
 	private  double precio;
 	
-	@Column
-	private Integer id_familia_producto;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "id_familia_producto", nullable = false)
+    private FamiliaProducto familiaProducto;
 
 	
-
-	public Producto( String nombre, int cantidad, double precio, Integer id_familia_producto) {
+	public Producto( String nombre, int cantidad, double precio, FamiliaProducto familiaProducto) {
 		
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
-		this.id_familia_producto = id_familia_producto;
+		this.familiaProducto = familiaProducto;
 	}
+
+
 
 	public Producto() {
 	}
@@ -69,15 +71,19 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
-	public Integer getId_familia_producto() {
-		return id_familia_producto;
+	public FamiliaProducto getFamiliaProducto() {
+		return familiaProducto;
 	}
 
-	public void setId_familia_producto(Integer id_familia_producto) {
-		this.id_familia_producto = id_familia_producto;
+	public void setFamiliaProducto(FamiliaProducto familiaProducto) {
+		this.familiaProducto = familiaProducto;
 	}
 
+	
 
+	
+
+	
 	
 	
 

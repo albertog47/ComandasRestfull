@@ -6,25 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comandas.restfull.entity.FamiliaTipo;
+import com.comandas.restfull.entity.Tipo;
 import com.comandas.restfull.exception.ModelNontFoundException;
-import com.comandas.restfull.repository.RepositoryFamiliaTipo;
+import com.comandas.restfull.repository.RepositoryTipo;
 
 @Service
-public class ServiceFamiliaTipoImple implements ServiceFamiliaTipo {
+public class ServiceTipoImple implements ServiceTipo {
 
 	@Autowired
-	RepositoryFamiliaTipo repoFamiliaTipo;
+	RepositoryTipo repoFamiliaTipo;
 	
 	@Override
-	public List<FamiliaTipo> findAllFamiliaTipos() {
+	public List<Tipo> findAllTipos() {
 
 		return repoFamiliaTipo.findAll();
 	}
 
 	@Override
-	public Optional<FamiliaTipo> findFamiliaTipoById(Integer id) {
-		Optional<FamiliaTipo> familiaTipo = repoFamiliaTipo.findById(id);	
+	public Optional<Tipo> findTipoById(Integer id) {
+		Optional<Tipo> familiaTipo = repoFamiliaTipo.findById(id);	
 		if (familiaTipo.isEmpty()){
 			throw new ModelNontFoundException( "Error! La familia no ha sido encontrada");
 		}else {
@@ -33,13 +33,13 @@ public class ServiceFamiliaTipoImple implements ServiceFamiliaTipo {
 	}
 
 	@Override
-	public FamiliaTipo saveFamiliaTipo(FamiliaTipo familiaTipo) {
+	public Tipo saveTipo(Tipo tipo) {
 		// TODO Auto-generated method stub
-		return repoFamiliaTipo.save(familiaTipo);
+		return repoFamiliaTipo.save(tipo);
 	}
 
 	@Override
-	public void deleteFamiliaTipo(Integer id) {
+	public void deleteTipo(Integer id) {
 		if (repoFamiliaTipo.findById(id).isPresent()) {		
 			repoFamiliaTipo.deleteById(id);				
 			}	else {
@@ -48,8 +48,12 @@ public class ServiceFamiliaTipoImple implements ServiceFamiliaTipo {
 	}
 
 	@Override
-	public FamiliaTipo updateFamiliaTipo(FamiliaTipo familiaTipo) {
-		return repoFamiliaTipo.save(familiaTipo);
+	public Tipo updateTipo(Tipo tipo) {
+		if (repoFamiliaTipo.findById(tipo.getId()).isPresent()) {	
+		return repoFamiliaTipo.save(tipo);
+		}else {
+			throw new ModelNontFoundException( "Error! La familia no existe");
+				}
 	}
 
 }

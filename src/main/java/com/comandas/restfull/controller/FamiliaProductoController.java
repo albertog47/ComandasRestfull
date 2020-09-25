@@ -13,8 +13,8 @@ import com.comandas.restfull.service.ServiceFamiliaProducto;
 
 
 @RestController
-@RequestMapping("/familias/fampro")
-public class FamiliaTipoProductoController {
+@RequestMapping("/tipo/fampro")
+public class FamiliaProductoController {
 
 	@Autowired
 	ServiceFamiliaProducto serviceFamiliaProducto;
@@ -40,7 +40,7 @@ public class FamiliaTipoProductoController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Object>  updateFamilia(@RequestBody FamiliaProducto familiaProducto) {
-		serviceFamiliaProducto.saveFamiliaProducto(familiaProducto);
+		serviceFamiliaProducto.updateFamiliaProducto(familiaProducto);
 		return new ResponseEntity <>( HttpStatus.OK);
 	}
 

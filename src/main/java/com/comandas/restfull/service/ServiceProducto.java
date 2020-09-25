@@ -12,5 +12,6 @@ public interface ServiceProducto {
 	public Producto saveProducto(Producto producto);	
 	public void deleteProducto(Long id);	
 	public Producto updateProducto(Producto producto);
+	public List<Producto> findProductoByidFamilia(Integer id);
 	
 }
