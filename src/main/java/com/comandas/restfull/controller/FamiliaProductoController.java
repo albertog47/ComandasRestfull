@@ -13,6 +13,7 @@ import com.comandas.restfull.service.ServiceFamiliaProducto;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/tipo/fampro")
 public class FamiliaProductoController {
 

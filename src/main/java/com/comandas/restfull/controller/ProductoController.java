@@ -15,13 +15,14 @@ import com.comandas.restfull.service.ServiceProducto;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/tipo/fampro/producto")
 public class ProductoController {
 
 	@Autowired
 	ServiceProducto serviceProducto;
 
-	// http://localhost:9120/familias/fampro/producto" (GET)
+	// http://localhost:9120/tipo/fampro/producto" (GET)
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity <List<Producto>> getProductos() {
 
