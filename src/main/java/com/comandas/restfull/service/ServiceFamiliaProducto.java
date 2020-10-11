@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.comandas.restfull.entity.FamiliaProducto;
 
+
 public interface ServiceFamiliaProducto {
 	
 	
@@ -13,6 +14,6 @@ public interface ServiceFamiliaProducto {
 	public FamiliaProducto saveFamiliaProducto(FamiliaProducto familiaProducto);	
 	public void deleteFamiliaProducto(Integer id);	
 	public FamiliaProducto updateFamiliaProducto(FamiliaProducto familiaProducto);
-	
+	public List<FamiliaProducto> findFamiliaProductoByidTipo(Integer id);
 
 }

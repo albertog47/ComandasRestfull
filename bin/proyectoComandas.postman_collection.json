@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "fb6b216c-8a47-4d0b-b479-305f75d00359",
+		"name": "proyectoComandas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tipos",
+			"item": [
+				{
+					"name": "Buscartodas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Tipos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"Bebidas\"}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipos/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipos",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Tipos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 3,\n        \"nombre\": \"Menús\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipos/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipos",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Tipos",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipos/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipos",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Tipo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9120/tipos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Familias Producto",
+			"item": [
+				{
+					"name": "Buscartodas familia productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/fampro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"fampro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearFamilias productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"Refrescos\",\r\n\"tipo\": \r\n    {\r\n        \"id\": 1,\r\n        \"nombre\": \"Bebidas\"\r\n    }\r\n\r\n\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarFamilias Productos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 2,\n       \"nombre\": \"Refrescos\",\n\"tipo\": \n    {\n        \"id\": 1,\n        \"nombre\": \"Bebidas\"\n    }\n\n\n    \n}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/fampro/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"fampro",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarFamilia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/familias/fampro/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"fampro",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9120/familias/fampro/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"familias",
+								"fampro",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Buscartodas productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"Fanta naranja\",\r\n \"cantidad\" :35,\r\n \"precio\": 1.80,\r\n\r\n \"familiaProducto\":{\r\n     \"id\" :1,\r\n      \"nombre\": \"Refrescos\",\r\n        \"tipo\": \r\n            {\r\n              \"id\": 1,\r\n             \"nombre\": \"Bebidas\"\r\n            }\r\n \r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"id\": 1,\n\"nombre\": \"Piña\",\n \"cantidad\" :235,\n \"precio\": 1.50,\n\n \"familiaProducto\":{\n    \"id\": 1,\n      \"nombre\": \"Zumos\",\n        \"tipo\": \n            {\n              \"id\": 1,\n             \"nombre\": \"Bebidas\"\n            }\n \n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarFamilia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorId familia",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9120/tipo/fampro/producto/idfamilia/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9120",
+							"path": [
+								"tipo",
+								"fampro",
+								"producto",
+								"idfamilia",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	]
+}

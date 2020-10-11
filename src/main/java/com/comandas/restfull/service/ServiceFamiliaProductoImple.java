@@ -7,15 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comandas.restfull.entity.FamiliaProducto;
+import com.comandas.restfull.entity.Producto;
+import com.comandas.restfull.entity.Tipo;
 import com.comandas.restfull.exception.ModelNontFoundException;
 import com.comandas.restfull.repository.RepositoryFamiliaProducto;
+import com.comandas.restfull.repository.RepositoryTipo;
 
 @Service
 public class ServiceFamiliaProductoImple implements ServiceFamiliaProducto {
 
 	@Autowired
 	RepositoryFamiliaProducto repositoryFamiliaProducto;
-
+	@Autowired
+	RepositoryTipo repositoryTipo;
 	@Override
 	public List<FamiliaProducto> findAllFamiliaProductos() {
 
@@ -25,7 +29,7 @@ public class ServiceFamiliaProductoImple implements ServiceFamiliaProducto {
 	@Override
 	public Optional<FamiliaProducto> findFamiliaProductoById(Integer id) {
 		Optional<FamiliaProducto> familiaProducto = repositoryFamiliaProducto.findById(id);
-		if (familiaProducto.isEmpty()) {
+		if (!familiaProducto.isPresent()) {
 			throw new ModelNontFoundException("Error! La familia producto no ha sido encontrada");
 		} else {
 			return familiaProducto;
@@ -57,6 +61,20 @@ public class ServiceFamiliaProductoImple implements ServiceFamiliaProducto {
 
 			throw new ModelNontFoundException("Error! La familia producto no existe");
 		}
+	}
+
+	@Override
+	public List<FamiliaProducto> findFamiliaProductoByidTipo(Integer id) {
+		Optional<Tipo> tipo=repositoryTipo.findById(id);
+		List<FamiliaProducto> familiaProducto=repositoryFamiliaProducto.findByTipo(tipo);
+		if(familiaProducto.isEmpty()) {
+			throw new ModelNontFoundException("Error! La familia producto no ha sido encontrado");
+		}else{
+			return familiaProducto;
+		}
+	
+		
+		
 	}
 
 }

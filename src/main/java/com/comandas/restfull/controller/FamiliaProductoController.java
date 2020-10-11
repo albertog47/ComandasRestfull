@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.comandas.restfull.entity.FamiliaProducto;
+import com.comandas.restfull.entity.Producto;
 import com.comandas.restfull.service.ServiceFamiliaProducto;
 
 
@@ -51,4 +52,13 @@ public class FamiliaProductoController {
 		serviceFamiliaProducto.deleteFamiliaProducto(id);
 		 return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	
+	 
+	 @RequestMapping(value = "/idtipo/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<FamiliaProducto>> getFamiliaProductoByIdTipo(@PathVariable Integer id) {
+		
+		return new  ResponseEntity<>(serviceFamiliaProducto.findFamiliaProductoByidTipo(id), HttpStatus.OK);
+	}
+	 
 }

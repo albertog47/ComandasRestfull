@@ -28,7 +28,7 @@ public class ServiceProductImple implements ServiceProducto {
 	@Override
 	public Optional<Producto> findProductoById(Long id) {
 		Optional<Producto> producto = repositoryProducto.findById(id);
-		if (producto.isEmpty()) {
+		if (!producto.isPresent()) {
 			throw new ModelNontFoundException("Error! El producto no ha sido encontrado");
 		} else {
 			return producto;

@@ -25,7 +25,7 @@ public class ServiceTipoImple implements ServiceTipo {
 	@Override
 	public Optional<Tipo> findTipoById(Integer id) {
 		Optional<Tipo> familiaTipo = repoFamiliaTipo.findById(id);	
-		if (familiaTipo.isEmpty()){
+		if (!familiaTipo.isPresent()){
 			throw new ModelNontFoundException( "Error! La familia no ha sido encontrada");
 		}else {
 		return familiaTipo;
