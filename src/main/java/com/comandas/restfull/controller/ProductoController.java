@@ -23,13 +23,13 @@ public class ProductoController {
 	ServiceProducto serviceProducto;
 
 	// http://localhost:9120/tipo/fampro/producto" (GET)
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity <List<Producto>> getProductos() {
 
 		return new ResponseEntity <>(serviceProducto.findAllProductos(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Producto>> getProductoById(@PathVariable Long id) {
 		
 		return new  ResponseEntity<>(serviceProducto.findProductoById(id), HttpStatus.OK);
@@ -54,7 +54,7 @@ public class ProductoController {
 		 return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/idfamilia/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult/idfamilia/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Producto>> getProductoByIdFamilia(@PathVariable Integer id) {
 		
 		return new  ResponseEntity<>(serviceProducto.findProductoByidFamilia(id), HttpStatus.OK);

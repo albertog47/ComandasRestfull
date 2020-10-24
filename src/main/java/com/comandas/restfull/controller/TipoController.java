@@ -20,13 +20,13 @@ public class TipoController {
 	ServiceTipo serviceTipo;
 
 	// http://localhost:9120/tipos (GET)
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity <List<Tipo>> getTipo() {
 
 		return new ResponseEntity <>(serviceTipo.findAllTipos(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Tipo>> getTipoById(@PathVariable Integer id) {
 		
 		return new  ResponseEntity<>(serviceTipo.findTipoById(id), HttpStatus.OK);

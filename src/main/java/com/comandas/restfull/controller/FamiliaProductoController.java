@@ -22,13 +22,13 @@ public class FamiliaProductoController {
 	ServiceFamiliaProducto serviceFamiliaProducto;
 
 	// http://localhost:9120/familias/fampro/ (GET)
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity <List<FamiliaProducto>> getFamilias() {
 
 		return new ResponseEntity <>(serviceFamiliaProducto.findAllFamiliaProductos(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<FamiliaProducto>> getFamiliaProductoById(@PathVariable Integer id) {
 		
 		return new  ResponseEntity<>(serviceFamiliaProducto.findFamiliaProductoById(id), HttpStatus.OK);
@@ -55,7 +55,7 @@ public class FamiliaProductoController {
 	
 	
 	 
-	 @RequestMapping(value = "/idtipo/{id}", method = RequestMethod.GET, produces = "application/json")
+	 @RequestMapping(value = "/consult/idtipo/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<FamiliaProducto>> getFamiliaProductoByIdTipo(@PathVariable Integer id) {
 		
 		return new  ResponseEntity<>(serviceFamiliaProducto.findFamiliaProductoByidTipo(id), HttpStatus.OK);
