@@ -12,7 +12,7 @@ import com.comandas.restfull.entity.Tipo;
 import com.comandas.restfull.service.ServiceTipo;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequestMapping("/tipos")
 public class TipoController {
 

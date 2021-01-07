@@ -15,7 +15,7 @@ import com.comandas.restfull.service.ServiceProducto;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequestMapping("/tipo/fampro/producto")
 public class ProductoController {
 
