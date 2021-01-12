@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.comandas.restfull.entity.FamiliaProducto;
-import com.comandas.restfull.entity.Producto;
+
 import com.comandas.restfull.entity.Tipo;
 
 @Repository

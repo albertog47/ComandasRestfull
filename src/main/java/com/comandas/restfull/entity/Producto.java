@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Table(name="Productos")
 public class Producto implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1556530529924055656L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

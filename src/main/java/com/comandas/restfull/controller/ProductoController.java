@@ -8,9 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.comandas.restfull.entity.FamiliaProducto;
 import com.comandas.restfull.entity.Producto;
-import com.comandas.restfull.exception.ModelNontFoundException;
+
 import com.comandas.restfull.service.ServiceProducto;
 
 
