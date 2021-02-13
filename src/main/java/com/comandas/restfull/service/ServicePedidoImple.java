@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
-
+import com.comandas.restfull.entity.LineasPedido;
 import com.comandas.restfull.entity.Pedido;
+import com.comandas.restfull.entity.PedidoVo;
 import com.comandas.restfull.exception.ModelNontFoundException;
+import com.comandas.restfull.repository.RepositoryLineasPedido;
 import com.comandas.restfull.repository.RepositoryPedido;
 
 @Service
@@ -17,7 +19,8 @@ public class ServicePedidoImple implements ServicePedido {
 
 	@Autowired
 	RepositoryPedido repositoryPedido;
-	
+	@Autowired
+	RepositoryLineasPedido repositoryLineasPedido;
 	
 	@Override
 	public List<Pedido> findAllPedidos() {
@@ -35,9 +38,19 @@ public class ServicePedidoImple implements ServicePedido {
 	}
 
 	@Override
-	public Pedido savePedido(Pedido pedido) {
+	public Optional<Pedido>   savePedido(PedidoVo pedido) {
+		//PedidoVo peRecibido= pedido;
+		Pedido pe=new Pedido(pedido.getNombre(),pedido.getCantidadProductos(),pedido.getImporte());
+		pe= repositoryPedido.save(pe);
+		List<LineasPedido> lineas=pedido.getLineasPedido();
+		for (LineasPedido ln: lineas) {
+			ln.setPedido(pe);
+			repositoryLineasPedido.save(ln);
+		}
 		
-		return repositoryPedido.save(pedido);
+		
+		 
+		return repositoryPedido.findById(pe.getId());
 	}
 
 	@Override

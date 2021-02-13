@@ -76,9 +76,10 @@ public class ServiceLineasPedidoImple implements ServiceLineasPedido{
 		Optional<Pedido> pedido=repositoryPedido.findById(id);
 		List<LineasPedido>lineasPedido=repositoryLineasPedido.findByPedido(pedido);
 		if (!lineasPedido.isEmpty()) {
-			throw new ModelNontFoundException("Error! No se han encontrado líneas de pedido");
-		} else {
 			return lineasPedido;
+		} else {
+		
+			throw new ModelNontFoundException("Error! No se han encontrado líneas de pedido");
 		}
 	}
 

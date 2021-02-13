@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.comandas.restfull.entity.LineasPedido;
 import com.comandas.restfull.entity.Pedido;
-
+import com.comandas.restfull.entity.PedidoVo;
+import com.comandas.restfull.service.ServiceLineasPedido;
 import com.comandas.restfull.service.ServicePedido;
 
 @RestController
@@ -24,6 +26,8 @@ public class PedidoController {
 	
 	@Autowired
 	ServicePedido servicioPedido;
+	@Autowired
+	ServiceLineasPedido serviceLineas;
 	
 	// http://localhost:9120/pedido" (GET)
 		@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
@@ -33,15 +37,17 @@ public class PedidoController {
 		}
 
 		@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
-		public ResponseEntity<Optional<Pedido>> getPedidoById(@PathVariable Long id) {
+		public ResponseEntity<List<LineasPedido>> getPedidoById(@PathVariable Long id) {
 			
-			return new  ResponseEntity<>(servicioPedido.findPedidoById(id), HttpStatus.OK);
+			//return new  ResponseEntity<>(servicioPedido.findPedidoById(id), HttpStatus.OK);
+			return new  ResponseEntity<>(serviceLineas.findIdPedido(id), HttpStatus.OK);
 		}
 
 		@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-		public ResponseEntity<Pedido> addPedido(@RequestBody Pedido pedido) {
+		public ResponseEntity<Optional<Pedido>>  addPedido(@RequestBody PedidoVo pedido) {
 			
 			return new ResponseEntity <>(servicioPedido.savePedido(pedido), HttpStatus.CREATED);
+			
 		}
 
 		@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")

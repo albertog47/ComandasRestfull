@@ -14,4 +14,5 @@ import com.comandas.restfull.entity.Pedido;
 public interface RepositoryLineasPedido  extends JpaRepository<LineasPedido, Long>{
 	List<LineasPedido> findByPedido(Optional<Pedido> pedido);
 	
+	
 }
