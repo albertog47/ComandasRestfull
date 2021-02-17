@@ -20,18 +20,18 @@ public class PedidoVo implements Serializable{
 	
 	private  double importe;
 	
-	private List<LineasPedido> lineaPedido;
+	private List<LineaPedido> lineasPedido;
 
 	
 	
 	
 
-	public PedidoVo(String nombre, int cantidadProductos, double importe, List<LineasPedido> lineasPedido) {
+	public PedidoVo(String nombre, int cantidadProductos, double importe, List<LineaPedido> lineasPedido) {
 		super();
 		this.nombre = nombre;
 		this.cantidadProductos = cantidadProductos;
 		this.importe = importe;
-		this.lineaPedido = lineasPedido;
+		this.lineasPedido = lineasPedido;
 	}
 
 	public Long getId() {
@@ -66,12 +66,12 @@ public class PedidoVo implements Serializable{
 		this.importe = importe;
 	}
 
-	public List<LineasPedido> getLineasPedido() {
-		return lineaPedido;
+	public List<LineaPedido> getLineasPedido() {
+		return lineasPedido;
 	}
 
-	public void setLineasPedido(List<LineasPedido> lineasPedido) {
-		this.lineaPedido = lineasPedido;
+	public void setLineasPedido(List<LineaPedido> lineasPedido) {
+		this.lineasPedido = lineasPedido;
 	}
 
 	

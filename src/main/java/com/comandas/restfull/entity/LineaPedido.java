@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="LineasPedido")
 
-public class LineasPedido  implements Serializable{
+public class LineaPedido  implements Serializable{
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class LineasPedido  implements Serializable{
 	@Column
 	private  double precio;
 
-	public LineasPedido(Pedido pedido, Producto producto, int cantidad, double precio) {
+	public LineaPedido(Pedido pedido, Producto producto, int cantidad, double precio) {
 		
 		this.pedido = pedido;
 		this.producto = producto;
@@ -47,7 +47,7 @@ public class LineasPedido  implements Serializable{
 		this.precio = precio;
 	}
 
-	public LineasPedido() {
+	public LineaPedido() {
 		
 	}
 

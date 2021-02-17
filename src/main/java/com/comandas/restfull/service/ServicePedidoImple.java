@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.comandas.restfull.entity.LineasPedido;
+import com.comandas.restfull.entity.LineaPedido;
 import com.comandas.restfull.entity.Pedido;
 import com.comandas.restfull.entity.PedidoVo;
 import com.comandas.restfull.exception.ModelNontFoundException;
@@ -15,6 +16,7 @@ import com.comandas.restfull.repository.RepositoryLineasPedido;
 import com.comandas.restfull.repository.RepositoryPedido;
 
 @Service
+@Transactional
 public class ServicePedidoImple implements ServicePedido {
 
 	@Autowired
@@ -42,8 +44,8 @@ public class ServicePedidoImple implements ServicePedido {
 		//PedidoVo peRecibido= pedido;
 		Pedido pe=new Pedido(pedido.getNombre(),pedido.getCantidadProductos(),pedido.getImporte());
 		pe= repositoryPedido.save(pe);
-		List<LineasPedido> lineas=pedido.getLineasPedido();
-		for (LineasPedido ln: lineas) {
+		List<LineaPedido> lineas=pedido.getLineasPedido();
+		for (LineaPedido ln: lineas) {
 			ln.setPedido(pe);
 			repositoryLineasPedido.save(ln);
 		}
@@ -73,6 +75,16 @@ public class ServicePedidoImple implements ServicePedido {
 		} else {
 
 			throw new ModelNontFoundException("Error! El pedido no existe");
+		}
+	}
+
+	@Override
+	public Optional<List<Pedido>> findPedidoByNombre(String nombre) {
+		Optional<List<Pedido>> pedido = repositoryPedido.findByNombre(nombre);
+		if (!pedido.isPresent()) {
+			throw new ModelNontFoundException("Error! El pedido no ha sido encontrado");
+		} else {
+			return pedido;
 		}
 	}
 

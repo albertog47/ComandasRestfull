@@ -78,5 +78,5 @@ public class Pedido  implements Serializable{
 	
 
 	@OneToMany(mappedBy = "pedido")
-	private List<LineasPedido> LineasPedido;
+	private List<LineaPedido> LineaPedido;
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comandas.restfull.entity.LineasPedido;
+import com.comandas.restfull.entity.LineaPedido;
 
 import com.comandas.restfull.service.ServiceLineasPedido;
 
@@ -27,24 +27,24 @@ public class LineasPedidoController {
 
 	// http://localhost:9120/tipo/pedido/lineas" (GET)
 	@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<LineasPedido>> getLineas() {
+	public ResponseEntity<List<LineaPedido>> getLineas() {
 
 		return new ResponseEntity<>(serviceLineas.findAllLineasPedido(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Optional<LineasPedido>> getLineaById(@PathVariable Long id) {
+	public ResponseEntity<Optional<LineaPedido>> getLineaById(@PathVariable Long id) {
 		
 		return new  ResponseEntity<>(serviceLineas.findLineasPedidoById(id), HttpStatus.OK);
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<LineasPedido> addLinea(@RequestBody LineasPedido lineasPedido) {
+	public ResponseEntity<LineaPedido> addLinea(@RequestBody LineaPedido lineasPedido) {
 		
 		return new ResponseEntity <>(serviceLineas.saveLineasPedido(lineasPedido), HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Object>  updateLinea(@RequestBody LineasPedido lineasPedido) {
+	public ResponseEntity<Object>  updateLinea(@RequestBody LineaPedido lineasPedido) {
 		serviceLineas.updateLineasPedido(lineasPedido);
 		 return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -57,7 +57,7 @@ public class LineasPedidoController {
 	}
 	
 	@RequestMapping(value = "/consult/idPedido/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<LineasPedido>> getLineasByIdPedido(@PathVariable Long id) {
+	public ResponseEntity<List<LineaPedido>> getLineasByIdPedido(@PathVariable Long id) {
 		
 		return new  ResponseEntity<>(serviceLineas.findIdPedido(id), HttpStatus.OK);
 	}

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comandas.restfull.entity.LineasPedido;
+import com.comandas.restfull.entity.LineaPedido;
 import com.comandas.restfull.entity.Pedido;
 import com.comandas.restfull.entity.PedidoVo;
 import com.comandas.restfull.service.ServiceLineasPedido;
@@ -37,10 +37,16 @@ public class PedidoController {
 		}
 
 		@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
-		public ResponseEntity<List<LineasPedido>> getPedidoById(@PathVariable Long id) {
+		public ResponseEntity<List<LineaPedido>> getPedidoById(@PathVariable Long id) {
 			
 			//return new  ResponseEntity<>(servicioPedido.findPedidoById(id), HttpStatus.OK);
 			return new  ResponseEntity<>(serviceLineas.findIdPedido(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/{nombre}", method = RequestMethod.GET, produces = "application/json")
+		public ResponseEntity<Optional<List<Pedido>>> getPedidoByNombre(@PathVariable String nombre) {
+			
+			return new  ResponseEntity<>(servicioPedido.findPedidoByNombre(nombre), HttpStatus.OK);
 		}
 
 		@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
