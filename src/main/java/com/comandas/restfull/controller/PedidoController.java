@@ -36,7 +36,7 @@ public class PedidoController {
 			return new ResponseEntity <>(servicioPedido.findAllPedidos(), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/consult/{id}", method = RequestMethod.GET, produces = "application/json")
+		@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
 		public ResponseEntity<List<LineaPedido>> getPedidoById(@PathVariable Long id) {
 			
 			//return new  ResponseEntity<>(servicioPedido.findPedidoById(id), HttpStatus.OK);

@@ -13,5 +13,6 @@ public interface ServiceProducto {
 	public void deleteProducto(Long id);	
 	public Producto updateProducto(Producto producto);
 	public List<Producto> findProductoByidFamilia(Integer id);
+	public boolean validarProducto(Producto producto);
 	
 }

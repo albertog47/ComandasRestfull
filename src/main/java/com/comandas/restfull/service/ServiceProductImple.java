@@ -39,6 +39,7 @@ public class ServiceProductImple implements ServiceProducto {
 	public Producto saveProducto(Producto producto) {
 
 		return repositoryProducto.save(producto);
+		
 	}
 
 	@Override
@@ -73,7 +74,23 @@ public class ServiceProductImple implements ServiceProducto {
 			return producto;
 		}
 	}
+	@Override
+	public boolean validarProducto(Producto producto) {
+		boolean validar=true;
+		if(producto.getCantidad()>0) {
+			validar=false;
+		}
+		else if(producto.getPrecio()>0) {
+			validar=false;
+		}
+		else if(producto.getFamiliaProducto().getId()==null) {
+			validar=false;
+		}
+		else if(producto.getFamiliaProducto().getTipo().getId()==null) {
+			validar=false;
+		}
+		return validar;
+	}
 
 	
-
 }

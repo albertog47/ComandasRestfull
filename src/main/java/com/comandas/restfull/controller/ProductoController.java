@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.comandas.restfull.dto.Mensaje;
 import com.comandas.restfull.entity.Producto;
 
 import com.comandas.restfull.service.ServiceProducto;
@@ -35,8 +37,12 @@ public class ProductoController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto) {
-		
+	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto, BindingResult bindingResult) {
+		 if(bindingResult.hasErrors()) {
+	            return new ResponseEntity(new Mensaje("Campos mal puestos o incompletos"), HttpStatus.BAD_REQUEST);
+		 }else if(serviceProducto.validarProducto(producto)) {
+			  return new ResponseEntity(new Mensaje("Campos mal puestos o incompletos"), HttpStatus.BAD_REQUEST);
+		 }
 		return new ResponseEntity <>(serviceProducto.saveProducto(producto), HttpStatus.CREATED);
 	}
 
