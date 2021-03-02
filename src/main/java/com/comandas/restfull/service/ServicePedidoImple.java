@@ -1,5 +1,6 @@
 package com.comandas.restfull.service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,10 @@ public class ServicePedidoImple implements ServicePedido {
 	@Override
 	public Optional<Pedido>   savePedido(PedidoVo pedido) {
 		//PedidoVo peRecibido= pedido;
-		Pedido pe=new Pedido(pedido.getNombre(),pedido.getCantidadProductos(),pedido.getImporte());
+		Pedido pe=new Pedido(pedido.getNombre(),pedido.getCantidadProductos(),pedido.getImporte(),pedido.getComentarios(), pedido.getTipo_envio(), pedido.getDireccion(), pedido.getTelefono(),pedido.getFecha());
+		
+		Calendar c = Calendar.getInstance();
+		pe.setFecha(c);
 		pe= repositoryPedido.save(pe);
 		List<LineaPedido> lineas=pedido.getLineasPedido();
 		for (LineaPedido ln: lineas) {
