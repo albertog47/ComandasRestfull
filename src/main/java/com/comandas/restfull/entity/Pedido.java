@@ -2,14 +2,19 @@ package com.comandas.restfull.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,8 +53,10 @@ public class Pedido  implements Serializable{
 	@Column
 	private int telefono;
 	
-	@Column
-	private String estado;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "pedido_estado", joinColumns = @JoinColumn(name = "pedido_id"),
+    inverseJoinColumns = @JoinColumn(name = "estado_id"))
+	private Set<Estado> estadoPedido=new HashSet<>();
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -60,7 +67,7 @@ public class Pedido  implements Serializable{
 
 	public Pedido(String nombre, int cantidadProductos, double importe, String comentarios, String tipo_envio,
 			String direccion, int telefono, Calendar fecha) {
-		super();
+		
 		this.nombre = nombre;
 		this.cantidadProductos = cantidadProductos;
 		this.importe = importe;
@@ -152,13 +159,15 @@ public class Pedido  implements Serializable{
 
 
 
-	public String getEstado() {
-		return estado;
+	public Set<Estado> getEstadoPedido() {
+		return estadoPedido;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstadoPedido(Set<Estado> estadoPedido) {
+		this.estadoPedido = estadoPedido;
 	}
+
+
 
 
 
