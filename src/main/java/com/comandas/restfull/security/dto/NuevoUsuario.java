@@ -1,4 +1,5 @@
 package com.comandas.restfull.security.dto;
+import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
