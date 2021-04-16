@@ -3,7 +3,9 @@ package com.comandas.restfull.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 
@@ -40,7 +42,7 @@ public class PedidoVo implements Serializable{
 
 	public PedidoVo(String nombre, int cantidadProductos, double importe, String comentarios, String tipo_envio,
 			String direccion, int telefono, List<LineaPedido> lineasPedido, Calendar fecha) {
-		super();
+	
 		this.nombre = nombre;
 		this.cantidadProductos = cantidadProductos;
 		this.importe = importe;
@@ -50,6 +52,8 @@ public class PedidoVo implements Serializable{
 		this.telefono = telefono;
 		this.lineasPedido = lineasPedido;
 		this.fecha = fecha;
+		
+		
 	}
 
 	public Long getId() {
@@ -132,6 +136,9 @@ public class PedidoVo implements Serializable{
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
+
+
+	
 
 	
 	

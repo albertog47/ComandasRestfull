@@ -1,5 +1,6 @@
 package com.comandas.restfull.entity;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -15,7 +16,12 @@ import com.comandas.restfull.security.enums.EstadosNombre;
 
 @Entity(name="Estado")
 	
-public class Estado {
+public class Estado implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2340080553022909076L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

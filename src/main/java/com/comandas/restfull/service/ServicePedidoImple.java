@@ -1,21 +1,25 @@
 package com.comandas.restfull.service;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comandas.restfull.entity.Estado;
 import com.comandas.restfull.entity.LineaPedido;
 import com.comandas.restfull.entity.Pedido;
 import com.comandas.restfull.entity.PedidoVo;
 import com.comandas.restfull.exception.ModelNontFoundException;
+import com.comandas.restfull.repository.RepositoryEstado;
 import com.comandas.restfull.repository.RepositoryLineasPedido;
 import com.comandas.restfull.repository.RepositoryPedido;
-
+import com.comandas.restfull.security.enums.EstadosNombre;
 @Service
 @Transactional
 public class ServicePedidoImple implements ServicePedido {
@@ -24,6 +28,8 @@ public class ServicePedidoImple implements ServicePedido {
 	RepositoryPedido repositoryPedido;
 	@Autowired
 	RepositoryLineasPedido repositoryLineasPedido;
+	@Autowired
+	RepositoryEstado repositoryEstado;
 	
 	@Override
 	public List<Pedido> findAllPedidos() {
@@ -41,10 +47,13 @@ public class ServicePedidoImple implements ServicePedido {
 	}
 
 	@Override
-	public Optional<Pedido>   savePedido(PedidoVo pedido) {
+	public Optional<Pedido>savePedido(PedidoVo pedido) {
 		//PedidoVo peRecibido= pedido;
+		Set<Estado> estado= new HashSet<>();
+		estado.add(repositoryEstado.findByEstadoNombre(EstadosNombre.EN_PROCESO).get());
 		Pedido pe=new Pedido(pedido.getNombre(),pedido.getCantidadProductos(),pedido.getImporte(),pedido.getComentarios(), pedido.getTipo_envio(), pedido.getDireccion(), pedido.getTelefono(),pedido.getFecha());
 		
+		pe.setEstadoPedido(estado);
 		Calendar c = Calendar.getInstance();
 		pe.setFecha(c);
 		pe= repositoryPedido.save(pe);

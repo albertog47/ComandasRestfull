@@ -56,7 +56,8 @@ public class Pedido  implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "pedido_estado", joinColumns = @JoinColumn(name = "pedido_id"),
     inverseJoinColumns = @JoinColumn(name = "estado_id"))
-	private Set<Estado> estadoPedido=new HashSet<>();
+
+    private Set<Estado> estadoPedido=new HashSet<>();
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -76,6 +77,7 @@ public class Pedido  implements Serializable{
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.fecha = fecha;
+		
 	}
 
 	public Pedido() {
@@ -166,7 +168,6 @@ public class Pedido  implements Serializable{
 	public void setEstadoPedido(Set<Estado> estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
-
 
 
 
