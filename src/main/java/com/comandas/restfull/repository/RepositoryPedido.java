@@ -9,12 +9,20 @@ import org.springframework.stereotype.Repository;
 
 
 import com.comandas.restfull.entity.Pedido;
-import com.comandas.restfull.entity.PedidoVo;
+
 
 
 @Repository
 public interface RepositoryPedido  extends JpaRepository<Pedido, Long>{
-	 @Query("FROM Pedido ORDER BY id DESC")
+	
+	 @Query("select p FROM Pedido p  where p.nombre = ?1  ORDER BY id DESC")
 	Optional<List<Pedido>> findByNombre(String nombre);
+	 
+	 @Query("select p FROM Pedido p ORDER BY id DESC")
+	 public Optional<List<Pedido>> findAllPedidosDesc();	
+	 
+	
+	 
+		
 
 }

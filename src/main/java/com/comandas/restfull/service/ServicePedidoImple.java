@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +31,12 @@ public class ServicePedidoImple implements ServicePedido {
 	RepositoryEstado repositoryEstado;
 	
 	@Override
-	public List<Pedido> findAllPedidos() {
-		return repositoryPedido.findAll();
+	public  Optional<List<Pedido>> findAllPedidos() {
+		Optional<List<Pedido>> pedidos=Optional.of(repositoryPedido.findAll());
+		
+		return pedidos;
 	}
+	
 
 	@Override
 	public Optional<Pedido> findPedidoById(Long id) {
@@ -84,7 +86,15 @@ public class ServicePedidoImple implements ServicePedido {
 	@Override
 	public Pedido updatePedido(Pedido pedido) {
 		if (repositoryPedido.findById(pedido.getId()).isPresent()) {
-			return repositoryPedido.save(pedido);
+			Pedido pedi= new Pedido();
+			Optional<Pedido> pe= repositoryPedido.findById(pedido.getId());
+			if(pe.isPresent()) {
+				pedi=pe.get();
+				Set<Estado> estado=pedido.getEstadoPedido();
+				estado.iterator().next().setEstadoNombre(EstadosNombre.ENTREGADO);
+				pedi.setEstadoPedido(estado);
+			}
+			return repositoryPedido.save(pedi);
 		} else {
 
 			throw new ModelNontFoundException("Error! El pedido no existe");
@@ -99,6 +109,14 @@ public class ServicePedidoImple implements ServicePedido {
 		} else {
 			return pedido;
 		}
+	}
+
+
+	@Override
+	public Optional<List<Pedido>> findAllPedidosDesc() {
+	Optional<List<Pedido>> pedidos=repositoryPedido.findAllPedidosDesc();
+		
+		return pedidos;
 	}
 
 	

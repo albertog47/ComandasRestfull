@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.comandas.restfull.entity.Tipo;
@@ -19,8 +20,9 @@ public class ServiceTipoImple implements ServiceTipo {
 	@Override
 	public List<Tipo> findAllTipos() {
 
-		return repoFamiliaTipo.findAll();
+		return repoFamiliaTipo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
+	
 
 	@Override
 	public Optional<Tipo> findTipoById(Integer id) {
@@ -55,5 +57,8 @@ public class ServiceTipoImple implements ServiceTipo {
 			throw new ModelNontFoundException( "Error! La familia no existe");
 				}
 	}
+
+
+
 
 }

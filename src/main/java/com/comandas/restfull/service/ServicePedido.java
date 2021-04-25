@@ -10,7 +10,8 @@ import com.comandas.restfull.entity.PedidoVo;
 
 public interface ServicePedido {
 
-	public List<Pedido> findAllPedidos();	
+	public Optional<List<Pedido>> findAllPedidos();	
+	 public Optional<List<Pedido>> findAllPedidosDesc();
 	public Optional<Pedido> findPedidoById(Long id);
 	public Optional<Pedido>  savePedido(PedidoVo pedido);	
 	public void deletePedido(Long id);	

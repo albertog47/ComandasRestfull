@@ -1,7 +1,9 @@
 package com.comandas.restfull.controller;
 
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.comandas.restfull.entity.LineaPedido;
 import com.comandas.restfull.entity.Pedido;
 import com.comandas.restfull.entity.PedidoVo;
+import com.comandas.restfull.security.entity.Rol;
+import com.comandas.restfull.security.entity.Usuario;
+import com.comandas.restfull.security.enums.RolNombre;
+import com.comandas.restfull.security.service.RolService;
+import com.comandas.restfull.security.service.UsuarioService;
 import com.comandas.restfull.service.ServiceLineasPedido;
 import com.comandas.restfull.service.ServicePedido;
 
@@ -28,10 +35,14 @@ public class PedidoController {
 	ServicePedido servicioPedido;
 	@Autowired
 	ServiceLineasPedido serviceLineas;
+	@Autowired
+	UsuarioService serviceUsuario;
+	@Autowired
+	RolService serviceRol;
 	
 	// http://localhost:9120/pedido" (GET)
 		@RequestMapping(value = "/consult", method = RequestMethod.GET, produces = "application/json")
-		public ResponseEntity <List<Pedido>> getPedidos() {
+		public ResponseEntity <Optional<List<Pedido>>> getPedidos() {
 
 			return new ResponseEntity <>(servicioPedido.findAllPedidos(), HttpStatus.OK);
 		}
@@ -45,7 +56,22 @@ public class PedidoController {
 
 		@RequestMapping(value = "/{nombre}", method = RequestMethod.GET, produces = "application/json")
 		public ResponseEntity<Optional<List<Pedido>>> getPedidoByNombre(@PathVariable String nombre) {
+		
 			
+	
+			Optional<Usuario> usu=serviceUsuario.getByNombreUsuario(nombre);
+			if(usu.isPresent()) {
+		
+				Set<Rol> sr=usu.get().getRoles();
+				String nrol=sr.iterator().next().getRolNombre().name();
+
+				if(nrol.equals(RolNombre.ROLE_ADMIN.toString())) {
+					return new  ResponseEntity<>(servicioPedido.findAllPedidosDesc(), HttpStatus.OK);
+				}
+				else {
+					return new  ResponseEntity<>(servicioPedido.findPedidoByNombre(nombre), HttpStatus.OK);
+				}
+			}
 			return new  ResponseEntity<>(servicioPedido.findPedidoByNombre(nombre), HttpStatus.OK);
 		}
 
